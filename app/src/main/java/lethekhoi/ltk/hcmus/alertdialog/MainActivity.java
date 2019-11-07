@@ -54,19 +54,30 @@ public class MainActivity extends AppCompatActivity {
         mBtnDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Context context;
+                final Context context;
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Chọn ngôn ngữ sử dụng");
 //                builder.setMessage("Các ngôn ngữ thông dụng");
 
                 final String[] arrayLang = {"C", "C++", "Php", "JavaScript", "Scala"};
-                builder.setSingleChoiceItems(arrayLang, -1, new DialogInterface.OnClickListener() {
+                boolean[] arrayChecked ={false, false, false, false, false};
+                builder.setMultiChoiceItems(arrayLang, arrayChecked, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity.this, arrayLang[i], Toast.LENGTH_SHORT).show();
-                        dialogInterface.dismiss();
+                    public void onClick(DialogInterface dialogInterface, int i, boolean isChecked) {
+                        if(isChecked){
+                            Toast.makeText(MainActivity.this, "Đã check",Toast.LENGTH_SHORT).show();git add
+                        }else{
+                            Toast.makeText(MainActivity.this, "Bỏ check",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
+//                builder.setSingleChoiceItems(arrayLang, -1, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        Toast.makeText(MainActivity.this, arrayLang[i], Toast.LENGTH_SHORT).show();
+//                        dialogInterface.dismiss();
+//                    }
+//                });
 builder.show();
 
                 //annotation
